@@ -1,29 +1,52 @@
 import { useState } from "react"
 import resList from "../utils/mockData"
 import RestaurantCard from "./RestaurantCard"
-
-
-
-const Body = () => {
-  const [listofRestaurants, setlistofRestaurants] = useState(resList)
-  
-  const filterHandler=()=>{
-  const filterList = listofRestaurants.filter((res)=>res.data.avgRating>4)
-  setlistofRestaurants(filterList)
-  }
     
-    return (
-      <div className='body'>
-        <div className='search'>Search</div>
-        <button className="filter"
-        onClick={filterHandler}
-        >Filter</button>
-      <div className='res-container'>
-        {listofRestaurants.map((restaurant)=>(
-          <RestaurantCard key={restaurant.data.id} {...restaurant.data}/>
-        ))}
-      </div>
-      </div>
-    )
-  }
-  export default Body
+    const Body = () => {
+      const [restaurants, setRestaurants] = useState(resList);
+      const [searchText, setSearchText] = useState("");
+
+      function filterData(searchText, restaurants) {
+        const filterData = restaurants.filter((restaurant) =>
+          restaurant.data.name.includes(searchText)
+        );
+      
+        return filterData;
+      }
+    
+      return (
+        <div className="Body">
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+            />
+            <button
+              className="search-btn"
+              onClick={() => {
+                //need to filter the data
+                const data = filterData(searchText,restaurants);
+                // update the state - restaurants
+                setRestaurants(data);
+              }}
+            >
+              Search
+            </button>
+          </div>
+          <div className="res-container">
+            {restaurants.map((restaurant) => {
+              return (
+                <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+              );
+            })}
+          </div>
+        </div>
+      );
+    };
+    
+    export default Body;
