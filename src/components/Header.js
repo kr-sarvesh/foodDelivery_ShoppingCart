@@ -1,11 +1,17 @@
-const loggedIn =()=>{
-  return true
-}
-
+import { useState } from 'react'
 
 // Header component starts from here
 
 const Header = ()=>{
+
+  const [loginToggle, setLoginToggle] = useState("login")
+
+  function loginToggleHandler (){
+    if(loginToggle === "login"){
+      setLoginToggle("logout")
+    }
+    else (setLoginToggle("login"))
+  }
 
     return(
       <div className='header'>
@@ -25,8 +31,7 @@ const Header = ()=>{
         </div>
         <div className='nav-items'>
           <ul>
-        <li>Login</li>
-        <li>Logout</li>
+        <li><button onClick={loginToggleHandler}>{loginToggle}</button></li>
         </ul>
         </div>
       </div>

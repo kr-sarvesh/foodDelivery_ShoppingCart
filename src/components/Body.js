@@ -64,6 +64,7 @@ const Body = () => {
             </button>
           </div>
           <div className="res-container">
+            {/* js Expression works here */}
             {(filteredRestaurants.length === 0 )? (<h1>No Filter found</h1>)
             :
             filteredRestaurants.map((restaurant) => {
