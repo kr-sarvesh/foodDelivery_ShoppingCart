@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import RestaurantCard from "./RestaurantCard"
 import Shimmer from "./Shimmer"
-    
+
 function filterData(searchText, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
     restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
