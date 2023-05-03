@@ -31,8 +31,6 @@ const RestaurantMenu = () => {
           const finalMenu= [...result].flatMap(subArray => subArray?.map(x => x.card.info.name)).slice(0, -2);
           setRestaurantDetail(finalMenu)
 
-            console.log("superfinal is array 1" + typeof finalMenu)      
-
             }
 
 
