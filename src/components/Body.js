@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import RestaurantCard from "./RestaurantCard"
 import {Link} from "react-router-dom"
 import Shimmer from "./Shimmer"
+import useOnline from "../utils/useOnline";
 
 function filterData(searchText, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
@@ -33,6 +34,13 @@ const Body = () => {
             setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
           }
       
+          const online = useOnline()
+
+          if(!online){
+            return <h1>Offline, please check your internet connection</h1>
+          }
+
+
       // not render component(early return)
       if(!allRestaurants) return null
 
