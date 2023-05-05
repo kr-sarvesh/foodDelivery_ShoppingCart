@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {Link} from "react-router-dom"
+import useOnline from "../utils/useOnline"
 
 // Header component starts from here
 
@@ -13,7 +14,8 @@ const Header = ()=>{
     }
     else (setLoginToggle("login"))
   }
-
+  // using custom online Hook
+  const isOnline = useOnline()
     return(
       <div className='header'>
         <div className='logo-container'>
@@ -27,12 +29,16 @@ const Header = ()=>{
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact Us</Link></li>
-          <li>Cart</li>
+          <li><Link to="/instamart">Instamart</Link></li>
           </ul>
         </div>
         <div className='nav-items'>
           <ul>
-        <li><button onClick={loginToggleHandler}>{loginToggle}</button></li>
+        <li>
+          <button onClick={loginToggleHandler}>{loginToggle}</button></li>
+          <span>        
+          {isOnline? "🟢": "🔴"}
+</span>
         </ul>
         </div>
       </div>

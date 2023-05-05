@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+//Custom hook
 const useOnline=()=>{
 const [isOnline, setIsOnline] = useState(true)
 
