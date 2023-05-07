@@ -1,6 +1,5 @@
 import {  useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
-import {FETCH_MENU_URL, IMG_CDN_URL} from "./constants"
+import { IMG_CDN_URL} from "./constants"
 import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
@@ -10,25 +9,48 @@ const RestaurantMenu = () => {
       
 
     return (
-      <>
+      <div className="container mx-auto px-6">
+        <div className="card lg:card-side bg-base-100 shadow-xl">
+          <div className="flex flex-col">
+            <div className="flex  gap-10">
+              <span>
+          <img
+        className="w-[500px]" 
+        src={IMG_CDN_URL+ restaurant.cloudinaryImageId} 
+        alt="no-img"></img>
+        </span>
         <div>
-            <h1>Restraunt id: {id} </h1>
-            <h2>Restraunt Name is {restaurant.name}</h2>
-            <img src={IMG_CDN_URL+ restaurant.cloudinaryImageId} alt="no-img"></img>
-            <h3>restaurant area is {restaurant.areaName}</h3>
-            <h3>restaurant city name is { restaurant.city }</h3>
-            <h3>restaurant city avgRating { restaurant.avgRating }</h3>
-            <h3>restaurant cost for two { restaurant.costForTwoMessage }</h3>
-        </div>
-        <div>
-          <h1>Menu Items</h1>
-          <ul>
+        <h1 className="text-center">Menu Items Available</h1>
+          <ul >
             {
-                restaurantDetail.map((items, index)=> <li key={index}>{items}</li>)
+                restaurantDetail.map((items, index)=> 
+                <li key={index}
+                className="border border-black"
+                 >
+                
+                  {items}</li>)
             }
           </ul>
         </div>
-        </>
+        <div>
+          <h1>Restraunt id: {id} </h1>
+          <h1>Restraunt Name is {restaurant.name}</h1>
+          <h1>Restaurant Area is {restaurant.areaName}</h1>
+          <h1>Restaurant City name is { restaurant.city }</h1>
+          <h1>Restaurant avgRating { restaurant.avgRating }</h1>
+          <h1>Restaurant cost for two { restaurant.costForTwoMessage }</h1>
+          </div>
+        </div>
+        
+          </div>
+
+        
+          
+          
+          </div>          
+        </div>
+       
+        
     )
 }
 export default RestaurantMenu

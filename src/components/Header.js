@@ -6,42 +6,59 @@ import useOnline from "../utils/useOnline"
 
 const Header = ()=>{
 
-  const [loginToggle, setLoginToggle] = useState("login")
+  const [loginToggle, setLoginToggle] = useState("LOGIN")
+  
+// using custom online Hook
+const isOnline = useOnline()
+
 
   function loginToggleHandler (){
-    if(loginToggle === "login"){
-      setLoginToggle("logout")
+    if(loginToggle === "LOGIN"){
+      setLoginToggle("LOGOUT")
     }
-    else (setLoginToggle("login"))
+    else (setLoginToggle("LOGIN"))
   }
-  // using custom online Hook
-  const isOnline = useOnline()
+  
     return(
-      <div className='header'>
-        <div className='logo-container'>
-          <img className="logo"
+      <nav className='container mx-auto relative p-2'>
+        {/* Flex container for Nav Items */}
+        <div className='flex items-center justify-between
+        space-x-20 my-6'>
+          {/* Logo */}
+        <div className='z-30'>
+          <Link to="/">
+          <img className="h-[5rem] w-[5rem] cursor-pointer "
           src={require('../images/foodlog.png')}
           alt='no-img'
-          />
+          /></Link>
+          
         </div>
-        <div className='nav-items'>
-          <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/instamart">Instamart</Link></li>
-          </ul>
+        
+        {/* Menu Items */}
+         
+        <div className='hidden items-center space-x-10 uppercase text-grayishBlue md:flex'>
+        
+          <Link
+          className='tracking-widest'
+          to="/" >Home</Link>
+          <Link className='tracking-widest hover:text-yellow-700' to="/about">About Us</Link>
+          <Link className='tracking-widest  hover:text-yellow-700'
+           to="/contact">Contact Us</Link>
+          <Link className='tracking-widest  hover:text-yellow-700' to="/instamart">Instamart</Link>
+          
         </div>
-        <div className='nav-items'>
+        <div className='flex'>
           <ul>
-        <li>
-          <button onClick={loginToggleHandler}>{loginToggle}</button></li>
-          <span>        
-          {isOnline? "🟢": "🔴"}
-</span>
+         <li >
+          <button
+         className=''
+         onClick={loginToggleHandler}>{loginToggle}</button>
+         <span>{isOnline? "🟢": "🔴"}</span>
+         </li>         
         </ul>
         </div>
-      </div>
+        </div>
+      </nav>
     )
   }
   export default Header

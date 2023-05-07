@@ -41,6 +41,9 @@ const Body = () => {
           }
 
 
+
+
+
       // not render component(early return)
       if(!allRestaurants) return null
 
@@ -49,19 +52,33 @@ const Body = () => {
         <Shimmer/>
       ) :  
       (
-        <div className="Body">
-          <div className="search-container">
-            <input
+                
+        <div className="container mx-auto flex flex-col px-6 ">
+          {/* Search container */}
+          <div >
+            {/* Search Starts from Here */}
+          
+              <input
               type="text"
-              className="search-input"
+              className=" px-3 pt-2 pb-2 mb-4 rounded-lg border-2 border-black focus:outline-none mr-3 md:mb-2
+              "
               placeholder="Search"
               value={searchText}
               onChange={(e) => {
                 setSearchText(e.target.value);
               }}
+              onKeyDown={(e)=>{
+                if((e.key) === "Enter"){
+                  const data = filterData(searchText, allRestaurants)
+                  setAllRestaurants(data)
+                }
+              }}
             />
             <button
-              className="search-btn"
+              className="inline-flex
+               px-6 py-3 font-semibold 
+               text-center duration-200 transform rounded-lg 
+               focus:outline-none bg-orange-300 hover:opacity-80"
               onClick={() => {
                 //need to filter the data
                 const data = filterData(searchText, allRestaurants);
@@ -71,16 +88,22 @@ const Body = () => {
             >
               Search
             </button>
+                      
           </div>
-          <div className="res-container">
+
+          <div className="container  flex flex-wrap justify-between ">
             {/* js Expression works here */}
             {(filteredRestaurants.length === 0 )? (<h1>No Filter found</h1>)
             :
             filteredRestaurants.map((restaurant) => {
               return (
+                <div>
                   <Link to={"/restaurant/"+ restaurant.data.id} key={restaurant.data.id}>
-                <RestaurantCard {...restaurant.data}  />
+                <RestaurantCard
+                
+                {...restaurant.data}  />
                 </Link>
+                </div>
               );
             })}
           </div>
