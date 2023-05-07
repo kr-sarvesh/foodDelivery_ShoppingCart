@@ -1,5 +1,5 @@
 
-### Namaste Food
+###  Food Ordering
 /**
  * Header
  *   - Logo
