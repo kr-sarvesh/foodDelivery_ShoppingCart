@@ -1,0 +1,7 @@
+{
+  "presets": [
+    ["@babel/preset-env", { "targets": { "node": "current" } }],
+    //for jsx
+    ["@babel/preset-react", { "runtime": "automatic" }]
+  ]
+}
