@@ -23,21 +23,19 @@ const RestaurantMenu = () => {
               <h1 className='text-center'>Menu Items Available</h1>
               <ul>
                 {restaurantDetail.map((items, index) => (
-                  <div className='container mx-auto border h-10'>
-                    <li key={index} className=''>
-                      {items}
-                    </li>
-                  </div>
+                  <li key={index} className=''>
+                    {items}
+                  </li>
                 ))}
               </ul>
             </div>
             <div>
               <h1>Restraunt Id: {id} </h1>
-              <h1>Restraunt Name is {restaurant.name}</h1>
-              <h1>Restaurant Area is {restaurant.areaName}</h1>
-              <h1>Restaurant City name is {restaurant.city}</h1>
-              <h1>Restaurant AvgRating {restaurant.avgRating}</h1>
-              <h1>Restaurant cost for two {restaurant.costForTwoMessage}</h1>
+              <h1>Restraunt Name is {restaurant?.name}</h1>
+              <h1>Restaurant Area is {restaurant?.areaName}</h1>
+              <h1>Restaurant City name is {restaurant?.city}</h1>
+              <h1>Restaurant AvgRating {restaurant?.avgRating}</h1>
+              <h1>Restaurant cost for two {restaurant?.costForTwoMessage}</h1>
             </div>
           </div>
         </div>

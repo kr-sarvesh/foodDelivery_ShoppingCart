@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import useOnline from '../utils/useOnline'
 
 // Header component starts from here
@@ -16,9 +16,15 @@ const Header = () => {
     } else setLoginToggle('LOGIN')
   }
 
+  const navLinkStyle = ({ isActive }) => {
+    return {
+      paddingBottom: isActive ? '4px' : 'none',
+      borderBottom: isActive ? '4px solid orange' : 'none',
+    }
+  }
   return (
     <>
-      <nav className=' navbar bg-neutral-100 shadow-lg px-14'>
+      <nav className=' navbar bg-neutral-100 shadow-lg px-20'>
         {/* Flex container for Nav Items */}
         <div
           className='container mx-auto flex items-center justify-between
@@ -26,47 +32,51 @@ const Header = () => {
         >
           {/* Logo */}
           <div className='z-30'>
-            <Link to='/'>
+            <NavLink to='/'>
               <img
                 className='h-[5rem] w-[5rem] cursor-pointer '
                 src={require('../images/foodlog.png')}
                 alt='no-img'
               />
-            </Link>
+            </NavLink>
           </div>
 
           {/* Menu Items */}
 
           <div className='hidden items-center space-x-10 uppercase text-grayishBlue md:flex'>
-            <Link
+            <NavLink
               className='tracking-widest
           hover:text-yellow-700
           font-semibold
           '
+              style={navLinkStyle}
               to='/'
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className='tracking-widest hover:text-yellow-700
           font-semibold
           '
+              style={navLinkStyle}
               to='/about'
             >
               About Us
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className='tracking-widest  hover:text-yellow-700 font-semibold'
               to='/contact'
+              style={navLinkStyle}
             >
               Contact Us
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className='tracking-widest  hover:text-yellow-700 font-semibold'
               to='/instamart'
+              style={navLinkStyle}
             >
               Instamart
-            </Link>
+            </NavLink>
           </div>
           <div className='flex'>
             <ul>

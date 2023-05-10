@@ -51,7 +51,7 @@ const Body = () => {
 
         <input
           type='text'
-          className=' px-6 pt-2 pb-2 mb-4 mt-4 ml-4 rounded-lg border-2 border-black focus:outline-none mr-3 md:mb-2
+          className=' px-6 pt-2 pb-2 mb-4 mt-4 ml-4 rounded-lg border-2 border-black focus:outline-none caret-red-700 mr-3 md:mb-2
               '
           placeholder='Search'
           value={searchText}
@@ -88,14 +88,12 @@ const Body = () => {
         ) : (
           filteredRestaurants.map((restaurant) => {
             return (
-              <div>
-                <Link
-                  to={'/restaurant/' + restaurant.data.id}
-                  key={restaurant.data.id}
-                >
-                  <RestaurantCard {...restaurant.data} />
-                </Link>
-              </div>
+              <Link
+                to={'/restaurant/' + restaurant.data.id}
+                key={restaurant.data.id}
+              >
+                <RestaurantCard {...restaurant.data} />
+              </Link>
             )
           })
         )}
