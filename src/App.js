@@ -16,7 +16,7 @@ const Instamart = lazy(() => import('./components/Instamart'))
 // This is a normal fn which returns some piece of JSx
 function App() {
   return (
-    <div className='overflow-x-hidden px-10'>
+    <div className='overflow-x-hidden flex flex-col justify-between min-h-screen '>
       <Header />
       <Outlet />
       <Footer />
