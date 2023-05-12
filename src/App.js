@@ -13,10 +13,10 @@ import Shimmer from './components/Shimmer'
 // dynamic import
 const Instamart = lazy(() => import('./components/Instamart'))
 
-// This is a normal fn which returns some piece of JSX
+// This is a normal fn which returns some piece of JSx
 function App() {
   return (
-    <div className='overflow-x-hidden flex flex-col justify-between min-h-screen '>
+    <div className='overflow-x-hidden flex flex-col  min-h-screen '>
       <Header />
       <Outlet />
       <Footer />

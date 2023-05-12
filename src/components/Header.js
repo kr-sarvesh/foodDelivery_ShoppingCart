@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import useOnline from '../utils/useOnline'
+import UserContext from '../utils/UserContext'
 
 // Header component starts from here
 
@@ -9,6 +10,9 @@ const Header = () => {
 
   // using custom online Hook
   const isOnline = useOnline()
+
+  // using context
+  const { user } = useContext(UserContext)
 
   function loginToggleHandler() {
     if (loginToggle === 'LOGIN') {
@@ -85,6 +89,7 @@ const Header = () => {
                   {loginToggle}
                 </button>
                 <span>{isOnline ? '🟢' : '🔴'}</span>
+                <h1 className='font-serif px-2 bg-red-300'> {user.userName}</h1>
               </li>
             </ul>
           </div>
