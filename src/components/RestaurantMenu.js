@@ -1,11 +1,20 @@
 import { useParams } from 'react-router-dom'
 import { IMG_CDN_URL } from './constants'
 import useRestaurant from '../utils/useRestaurant'
+import { addItem } from '../utils/cartSlice'
+import { useDispatch } from 'react-redux'
 
 const RestaurantMenu = () => {
   // how to read a dynamic URL params
   const { id } = useParams()
+
   const { restaurant, restaurantDetail } = useRestaurant(id)
+
+  const dispatch = useDispatch()
+
+  const addFoodItem = (items) => {
+    dispatch(addItem(items))
+  }
 
   return (
     <div className='container mx-auto px-6'>
@@ -23,8 +32,14 @@ const RestaurantMenu = () => {
               <h1 className='text-center'>Menu Items Available</h1>
               <ul>
                 {restaurantDetail.map((items, index) => (
-                  <li key={index} className=''>
+                  <li key={index} className='p-1'>
                     {items}
+                    <button
+                      className='p-1 ml-2 bg-green-100'
+                      onClick={() => addFoodItem(items)}
+                    >
+                      Add
+                    </button>
                   </li>
                 ))}
               </ul>

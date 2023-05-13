@@ -7,8 +7,11 @@ import About from './components/About'
 import RestaurantMenu from './components/RestaurantMenu'
 import Contact from './components/Contact'
 import Error from './components/Error'
+import Cart from './components/Cart'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import Shimmer from './components/Shimmer'
+import { Provider } from 'react-redux'
+import store from './utils/store'
 // lazy creating/ importing component only when it is required
 // dynamic import
 const Instamart = lazy(() => import('./components/Instamart'))
@@ -16,11 +19,13 @@ const Instamart = lazy(() => import('./components/Instamart'))
 // This is a normal fn which returns some piece of JSx
 function App() {
   return (
-    <div className='overflow-x-hidden flex flex-col  min-h-screen '>
-      <Header />
-      <Outlet />
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className='overflow-x-hidden flex flex-col  min-h-screen '>
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    </Provider>
   )
 }
 
@@ -53,6 +58,10 @@ export const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },

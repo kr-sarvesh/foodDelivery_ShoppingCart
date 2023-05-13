@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import useOnline from '../utils/useOnline'
 import UserContext from '../utils/UserContext'
-
+import { useSelector } from 'react-redux'
 // Header component starts from here
 
 const Header = () => {
@@ -14,12 +14,15 @@ const Header = () => {
   // using context
   const { user } = useContext(UserContext)
 
+  // using redux
+  const cartItems = useSelector((store) => store.cart.cartItems)
+
   function loginToggleHandler() {
     if (loginToggle === 'LOGIN') {
       setLoginToggle('LOGOUT')
     } else setLoginToggle('LOGIN')
   }
-
+  // Active link style
   const navLinkStyle = ({ isActive }) => {
     return {
       paddingBottom: isActive ? '4px' : 'none',
@@ -81,7 +84,15 @@ const Header = () => {
             >
               Instamart
             </NavLink>
+            <NavLink
+              className='tracking-widest  hover:text-yellow-700 font-semibold'
+              to='/cart'
+              style={navLinkStyle}
+            >
+              Cart - {cartItems.length}
+            </NavLink>
           </div>
+
           <div className='flex'>
             <ul>
               <li>
