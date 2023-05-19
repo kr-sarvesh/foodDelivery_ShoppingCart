@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { FETCH_MENU_URL } from '../components/constants'
+import { MenuItems } from '../components/constants'
 
 const useRestaurant = (id) => {
   const [restaurant, setRestauraunt] = useState({})
-  const [restaurantDetail, setRestaurantDetail] = useState([])
+  const [restaurantDetail, setRestaurantDetail] = useState({})
 
   useEffect(() => {
     getRestaurantInfo()
   }, [])
 
   async function getRestaurantInfo() {
-    const data = await fetch(FETCH_MENU_URL + id)
+    const data = await fetch(MenuItems + id + '&submitAction=Enter')
     const json = await data.json()
 
     setRestauraunt(json.data.cards[0].card.card.info)
@@ -18,17 +18,24 @@ const useRestaurant = (id) => {
     const card =
       json?.data?.cards[2]?.groupedCard?.cardGroupMap.REGULAR.cards.slice(1)
 
-    const result = card.map((x) => x.card.card.itemCards)
+    const result = card?.map((x) => x.card.card.itemCards)
 
+    // console.log(
+    //   [...result]?.map((subArray) => subArray?.map((x) => x?.card?.info))
+    // )
+
+    // console.log(result)
     // const finalMenu = result[0].map(x=>x.card.info.name)
 
-    const finalMenu = [...result]
-      .flatMap((subArray) => subArray?.map((x) => x.card.info.name))
+    const menuItems = [...result]
+      .map((subArray) => subArray?.map((x) => x.card.info))
       .slice(0, -2)
+    const finalMenu = menuItems.flatMap((x) => x)
+
+    console.log(finalMenu.map((x) => x.name))
 
     setRestaurantDetail(finalMenu)
   }
-  //return restraunt Data
 
   return { restaurant, restaurantDetail }
 }

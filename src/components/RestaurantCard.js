@@ -1,12 +1,12 @@
 // Resuable Card
 const RestaurantCard = (props) => {
   // Destructure of Props
-  // console.log(props);
+  console.log('props recieved' + props)
   // const {resData} = props
 
   return (
     <div className='container mx-auto my-12  md:px-12 '>
-      {/* Aircle */}
+      {/* Article */}
       <article className='overflow-hidden border border-black rounded-lg shadow-lg w-[250px]'>
         <img
           className='object-cover w-[150px] h-full rounded-[10px] z-0'
@@ -15,7 +15,7 @@ const RestaurantCard = (props) => {
             props.cloudinaryImageId
           }
           alt='no-Img'
-        />{' '}
+        />
         <header className='flex items-center justify-between leading-tight p-2 md:p-4'>
           <h1 className='text-lg'>
             Restaurant Name:{' '}
@@ -40,9 +40,9 @@ const RestaurantCard = (props) => {
       leading-none p-2 md:p-4 '
         >
           <span className='flex items-center no-underline hover:underline text-black'>
-            <p className='ml-2 text-sm'>₹{props.costForTwo / 100} FOR TWO</p>
+            <p className='ml-2 text-sm'>₹{props?.costForTwo / 100} FOR TWO </p>
             <p className='ml-2 text-sm'>
-              Delivery In: {props.deliveryTime} Minutes
+              Delivery In: {props?.minDeliveryTime} Minutes
             </p>
           </span>
         </section>

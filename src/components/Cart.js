@@ -10,6 +10,7 @@ const Cart = () => {
   return (
     <>
       <h1 className='font-bold text-3xl'>Cart-Items - {cartItems.length} </h1>
+      <h3>{cartItems.name}</h3>
     </>
   )
 }
