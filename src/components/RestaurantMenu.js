@@ -12,8 +12,8 @@ const RestaurantMenu = () => {
 
   const dispatch = useDispatch()
 
-  const addFoodItem = (item) => {
-    dispatch(addItem(item))
+  const addFoodItem = (e) => {
+    dispatch(addItem(e))
   }
 
   return (
@@ -31,10 +31,12 @@ const RestaurantMenu = () => {
             <div className='border w-[500px]'>
               <h1 className='text-center'>Menu Items Available</h1>
               {restaurantDetail?.map((item, index) => (
-                <li key={index} className='p-1 list-none '>
-                  {item.name}
+                <li className='list-none pl-2' key={index}>
+                  {item?.name}
                   <button
-                    className='p-1 ml-2 bg-green-100'
+                    className='btn btn-primary
+                      ml-4
+                    btn-outline btn-xs'
                     onClick={() => addFoodItem(item)}
                   >
                     Add
