@@ -11,9 +11,9 @@ const RestaurantMenu = () => {
   const { restaurant, restaurantDetail } = useRestaurant(id)
 
   const dispatch = useDispatch()
-
-  const addFoodItem = (e) => {
-    dispatch(addItem(e))
+  // dispatch action to add item to cart
+  const addFoodItem = (item) => {
+    dispatch(addItem(item))
   }
 
   return (

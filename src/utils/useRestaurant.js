@@ -20,7 +20,8 @@ const useRestaurant = (id) => {
 
     const result = card?.map((x) => x.card.card.itemCards)
 
-    // console.log(
+    // console.log(Object.values(...card)?.map((x) => x))
+    // console.log()
     //   [...result]?.map((subArray) => subArray?.map((x) => x?.card?.info))
     // )
 

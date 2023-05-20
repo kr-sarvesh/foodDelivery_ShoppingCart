@@ -14,7 +14,7 @@ const Header = () => {
   // using context
   const { user } = useContext(UserContext)
 
-  // using redux
+  // using useSelector
   const cartItems = useSelector((store) => store.cart.cartItems)
 
   function loginToggleHandler() {
